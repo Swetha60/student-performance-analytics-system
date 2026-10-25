@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "student-performance-analytics-syste-eta.vercel.app",
     "student-performance-analytics-system-8ycybbelh.vercel.app",
+    "student-performance-analytics-syste-orpin.vercel.app",
     "localhost",
     "127.0.0.1",
 ]
