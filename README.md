@@ -4,6 +4,8 @@
 
 The Student Performance Analytics System is a web-based application developed using Django and Python. It helps manage student information, academic records, attendance, and marks through a centralized interface.
 
+<img width="1869" height="848" alt="Image" src="https://github.com/user-attachments/assets/35a82bfe-caf6-4a2a-ae54-7314484a5167" />
+
 The main objective is to organize student academic data and make it easier to monitor student performance.
 
 ## Objectives
