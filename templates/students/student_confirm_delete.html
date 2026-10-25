@@ -1,0 +1,28 @@
+
+{% extends "base.html" %}
+
+{% block title %}Delete Student | Student Analytics{% endblock %}
+
+{% block content %}
+<div class="card border-0 shadow-sm mx-auto" style="max-width: 600px;">
+    <div class="card-body p-4">
+        <h1 class="h3">Delete Student</h1>
+        <p>
+            Are you sure you want to delete
+            <strong>{{ student.first_name }} {{ student.last_name }}</strong>
+            ({{ student.student_id }})?
+        </p>
+        <p class="text-danger small">
+            This action cannot be undone. Related marks may also be deleted
+            because of the configured database relationships.
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            <a href="{% url 'students:student_list' %}"
+               class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

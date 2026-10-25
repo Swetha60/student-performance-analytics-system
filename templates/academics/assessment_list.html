@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+
+{% block title %}Assessments | Student Analytics{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Assessments</h1>
+    <a href="{% url 'academics:assessment_create' %}" class="btn btn-primary">
+        + Create Assessment
+    </a>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr><th>Exam</th><th>Subject</th><th>Total Marks</th></tr>
+            </thead>
+            <tbody>
+                {% for assessment in assessments %}
+                <tr>
+                    <td>{{ assessment.exam }}</td>
+                    <td>{{ assessment.subject }}</td>
+                    <td>{{ assessment.total_marks }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="3" class="text-center py-4">No assessments yet.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

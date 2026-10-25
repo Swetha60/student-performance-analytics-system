@@ -1,0 +1,188 @@
+
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Student Analytics{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-header mb-4">
+    <span class="dashboard-eyebrow">OVERVIEW</span>
+    <h1 class="dashboard-heading">Student Performance Dashboard</h1>
+    <p class="dashboard-description">
+        Monitor students, academics, and attendance in one place.
+    </p>
+</div>
+
+<style>
+    .dashboard-eyebrow {
+        display: inline-block;
+        color: #758777;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.8px;
+        margin-bottom: 8px;
+    }
+
+    .dashboard-heading {
+        font-size: clamp(24px, 3vw, 31px);
+        font-weight: 650;
+        letter-spacing: -0.8px;
+        color: #303b34;
+        margin-bottom: 8px;
+    }
+
+    .dashboard-description {
+        color: #7b837b;
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+
+    .dashboard-card {
+        border: 1px solid #e9eae3 !important;
+        border-radius: 15px !important;
+        overflow: hidden;
+        transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 9px 22px rgba(48, 59, 52, .08) !important;
+    }
+
+    .dashboard-card .card-body {
+        padding: 23px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .card-top {
+        width: 43px;
+        height: 43px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        margin-bottom: 19px;
+        font-size: 21px;
+    }
+
+    .card-label {
+        color: #606b61;
+        font-size: 14px;
+        margin-bottom: 9px;
+        font-weight: 500;
+    }
+
+    .dashboard-card h2 {
+        color: #303b34;
+        font-size: 34px;
+        font-weight: 650;
+        letter-spacing: -1px;
+        margin-bottom: 17px;
+    }
+
+    .card-link {
+        margin-top: auto;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 600;
+        color: #596e5e;
+        padding-top: 12px;
+        border-top: 1px solid rgba(80, 90, 80, .10);
+        width: 100%;
+    }
+
+    .card-link:hover {
+        color: #263f30;
+    }
+
+    .students-card { background: #f0f5ef; }
+    .students-card .card-top { background: #dce9dc; color: #52765a; }
+
+    .classrooms-card { background: #f7f0e6; }
+    .classrooms-card .card-top { background: #ecdfcd; color: #8b7057; }
+
+    .subjects-card { background: #f3eff9; }
+    .subjects-card .card-top { background: #e5dcf2; color: #76649a; }
+
+    .marks-card { background: #faeeee; }
+    .marks-card .card-top { background: #f2dfe2; color: #a85f70; }
+
+    .attendance-card { background: #edf3f5; }
+    .attendance-card .card-top { background: #dce9ec; color: #547983; }
+
+    .dashboard-section-title {
+        font-size: 17px;
+        font-weight: 650;
+        color: #354138;
+        margin: 28px 0 15px;
+    }
+</style>
+
+<div class="dashboard-section-title">Academic Overview</div>
+
+<div class="row g-3 g-xl-4">
+
+    <div class="col-12 col-sm-6 col-xl-4">
+        <div class="card dashboard-card students-card h-100">
+            <div class="card-body">
+                <div class="card-top">♙</div>
+                <p class="card-label">Total Students</p>
+                <h2>{{ total_students }}</h2>
+                <a href="{% url 'students:student_list' %}"
+                   class="card-link">View student records →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-4">
+        <div class="card dashboard-card classrooms-card h-100">
+            <div class="card-body">
+                <div class="card-top">⌂</div>
+                <p class="card-label">Classrooms</p>
+                <h2>{{ total_classrooms }}</h2>
+                <a href="/admin/students/classroom/"
+                   class="card-link">Manage classrooms →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-4">
+        <div class="card dashboard-card subjects-card h-100">
+            <div class="card-body">
+                <div class="card-top">▤</div>
+                <p class="card-label">Subjects</p>
+                <h2>{{ total_subjects }}</h2>
+                <a href="{% url 'academics:subject_list' %}"
+                   class="card-link">View subjects →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-4">
+        <div class="card dashboard-card marks-card h-100">
+            <div class="card-body">
+                <div class="card-top">▥</div>
+                <p class="card-label">Marks Recorded</p>
+                <h2>{{ total_marks }}</h2>
+                <a href="{% url 'academics:mark_list' %}"
+                   class="card-link">View marks →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-4">
+        <div class="card dashboard-card attendance-card h-100">
+            <div class="card-body">
+                <div class="card-top">✓</div>
+                <p class="card-label">Attendance Records</p>
+                <h2>{{ total_attendance_records }}</h2>
+                <a href="{% url 'attendance:attendance_list' %}"
+                   class="card-link">View attendance →</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

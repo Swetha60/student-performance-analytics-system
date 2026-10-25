@@ -1,0 +1,49 @@
+
+{% extends "base.html" %}
+
+{% block title %}Attendance | Student Analytics{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <h1>Attendance Sessions</h1>
+    <a href="{% url 'attendance:attendance_create' %}" class="btn btn-primary">
+        + Create Session
+    </a>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Date</th>
+                    <th>Classroom</th>
+                    <th>Subject</th>
+                    <th>Topic</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in sessions %}
+                <tr>
+                    <td>{{ session.date }}</td>
+                    <td>{{ session.classroom }}</td>
+                    <td>{{ session.subject|default:"—" }}</td>
+                    <td>{{ session.topic|default:"—" }}</td>
+                    <td>
+                        <a href="{% url 'attendance:mark_attendance' session.pk %}"
+                           class="btn btn-sm btn-outline-primary">Mark Attendance</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center py-4">
+                        No attendance sessions created yet.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+
+{% extends "base.html" %}
+
+{% block title %}Mark Attendance | Student Analytics{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-2">Mark Attendance</h1>
+<p class="text-muted mb-4">
+    {{ session.classroom }} · {{ session.date }}
+</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+
+    <div class="card border-0 shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Student</th>
+                        <th>Status</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for form in formset %}
+                    <tr>
+                        <td>
+                            {{ form.id }}
+                            {{ form.instance.student }}
+                            {% for hidden in form.hidden_fields %}
+                                {% if hidden.name != "id" %}{{ hidden }}{% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {{ form.status }}
+                            {% for error in form.status.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {{ form.remarks }}
+                            {% for error in form.remarks.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center py-4">
+                            No students are assigned to this classroom.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <button class="btn btn-primary mt-3" type="submit">Save Attendance</button>
+    <a href="{% url 'attendance:attendance_list' %}"
+       class="btn btn-secondary mt-3">Cancel</a>
+</form>
+{% endblock %}
