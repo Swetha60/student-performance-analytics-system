@@ -26,13 +26,10 @@ SECRET_KEY = 'django-insecure-*9)#vj(t=017g2q=@l2$v8hd=(zvk$e9*_af4zn^t7ezaf!#5w
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "student-performance-analytics-syste-eta.vercel.app",
-    "student-performance-analytics-system-8ycybbelh.vercel.app",
-    "student-performance-analytics-syste-orpin.vercel.app",
+    ".vercel.app",
     "localhost",
     "127.0.0.1",
 ]
-
 
 # Application definition
 
